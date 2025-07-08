@@ -24,6 +24,7 @@ This is a work-in-progress [FluxCD](https://fluxcd.io/) repository to bring up c
 │       └── base
 │           └── flux-system
 ├── infrastructure
+│   ├── dashboards
 │   └── monitors
 └── scripts
 ```
@@ -42,9 +43,8 @@ Within `sources.yaml`, there are the Helm and OCI repositories for all component
 
 Where there are references here to clusters or environments, they are best thought of as _types_ of deployment. This repository is intended to abstract monitoring components and be a step removed; each project will need to integrate the relevant type of cluster being deployed via a specific kustomization, e.g. "monitoring-sync". This monitoring repository will be an extra GitRepository in any project.
 
-Anticipate including the following `monitoring-sqnc.yaml` along the base path of new or existing project clusters:
-
 ```yaml
+---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
@@ -55,6 +55,11 @@ spec:
   ref:
     branch: main
   url: https://github.com/digicatapult/monitoring-flux-infra.git
+```
+
+Anticipate including the following `monitoring-sqnc.yaml` along the base path of new or existing project clusters:
+
+```yaml
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
