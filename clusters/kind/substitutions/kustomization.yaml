@@ -6,9 +6,11 @@ configMapGenerator:
   - name: env-values
     files:
       - kube-prometheus-stack-values.yaml=kube-prometheus-stack/values.yaml
+      - loki-values.yaml=loki/values.yaml
 configurations:
   - kustomize.yaml
 generatorOptions:
   disableNameSuffixHash: true
 resources:
   - kube-prometheus-stack
+  - loki

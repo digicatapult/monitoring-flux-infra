@@ -8,6 +8,7 @@ This is a work-in-progress [FluxCD](https://fluxcd.io/) repository to bring up c
 ```
 .
 ├── applications
+│   ├── loki
 │   └── kube-prometheus-stack
 ├── clusters
 │   ├── azure

@@ -5,6 +5,7 @@ configMapGenerator:
   - name: base-values
     files:
       - kube-prometheus-stack-values.yaml=kube-prometheus-stack/values.yaml
+      - loki-values.yaml=loki/values.yaml
   - name: base-config
     files:
       - kube-state-metrics-config.yaml=kube-prometheus-stack/metrics.yaml
@@ -18,4 +19,5 @@ generatorOptions:
   disableNameSuffixHash: true
 resources:
   - kube-prometheus-stack
+  - loki
   - sources.yaml

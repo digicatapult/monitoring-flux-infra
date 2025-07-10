@@ -1,0 +1,28 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: loki
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: loki
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+      version: "6.31.0"
+  interval: 10m
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  valuesFrom:
+    # Shared/base values for monitoring applications
+    - kind: ConfigMap
+      name: base-values
+      valuesKey: loki-values.yaml
+    # Environment-specific values
+    - kind: ConfigMap
+      name: env-values
+      valuesKey: loki-values.yaml
