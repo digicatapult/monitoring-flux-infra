@@ -19,7 +19,7 @@ module.exports = (config = {}) => {
       labels: ["dependencies", "flux"],
     },
     ignorePaths: [
-      "**/clusters/**",
+      "**/clusters/azure/**",
       "**/examples/**",
       "**/scripts/**"
     ],
@@ -27,13 +27,26 @@ module.exports = (config = {}) => {
     packageRules: [
       {
         matchManagers: ["flux"],
+        pinDigests: false,
+        schedule: ["* 9-13,14-17 * * 1-5"],
+      },
+      {
+        matchManagers: ["flux"],
         addLabels: ["automerge", "base"],
         automerge: true,
         groupName: "flux - base layer",
-        matchManagers: ["flux"],
         matchPaths: ["applications/.*\\.ya?ml$"],
-        pinDigests: false,
-        schedule: ["* 9-13,14-17 * * 1-5"],
+        separateMajorMinor: true,
+        separateMinorPatch: false,
+        separateMultiple: true,
+        separateMultipleMajor: true,
+      },
+      {
+        matchManagers: ["flux"],
+        addLabels: ["automerge", "kind"],
+        automerge: true,
+        groupName: "flux - kind overlay",
+        matchPaths: ["clusters/kind/.*\\.ya?ml$"],
         separateMajorMinor: true,
         separateMinorPatch: false,
         separateMultiple: true,

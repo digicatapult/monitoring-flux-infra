@@ -190,6 +190,4 @@ By default, the specific values for each of the above cluster types will always 
 
 ### Using Renovate for CI
 
-With the Renovate configuration, we should ideally be ignoring both `./clusters` and `./examples`; the former comprises the overlays that could have pinned versions that we do not want Renovate to tinker with, while the latter references the former and uses it to deploy a test workflow.
-
-Optimally, Renovate should be used to just update the base layer of applications, leaving the overlays untouched. Developers then have the choice of whether to pass the dependency version through using `.spec.postBuild.Substitute` or similar in the corresponding overlay.
+In most cases, Renovate will be used to just update the base layer of applications and the Kind overlays, leaving the Azure overlays untouched. Developers will have the choice of whether to pass staging or production versions through environment variables or ConfigMaps, using `.spec.postBuild.Substitute` or similar in the corresponding Azure overlay.
