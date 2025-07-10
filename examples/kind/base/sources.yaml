@@ -7,5 +7,5 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: main
+    branch: feature/add_loki_and_promtail
   url: https://github.com/digicatapult/monitoring-flux-infra.git
