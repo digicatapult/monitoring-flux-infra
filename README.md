@@ -187,6 +187,7 @@ To provide an example of the above, there could be relevant values files in thre
 
 By default, the specific values for each of the above cluster types will always override the shared ones.
 
+
 ### Using Renovate for CI
 
 With the Renovate configuration, we should ideally be ignoring both `./clusters` and `./examples`; the former comprises the overlays that could have pinned versions that we do not want Renovate to tinker with, while the latter references the former and uses it to deploy a test workflow.
