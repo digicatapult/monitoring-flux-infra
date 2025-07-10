@@ -26,9 +26,11 @@ module.exports = (config = {}) => {
     onboarding: false,
     packageRules: [
       {
+        schedule: ["* 9-13,14-17 * * 1-5"],
+      },
+      {
         matchManagers: ["flux"],
         pinDigests: false,
-        schedule: ["* 9-13,14-17 * * 1-5"],
       },
       {
         matchManagers: ["flux"],
