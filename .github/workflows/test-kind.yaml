@@ -1,4 +1,4 @@
-name: test-kind-example
+name: test-kind
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ on:
       - reopened
       - synchronize
     branches:
-      - 'main'
+      - main
     paths:
       - 'examples/kind/**'
 
