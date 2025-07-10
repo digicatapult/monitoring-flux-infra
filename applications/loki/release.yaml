@@ -10,7 +10,7 @@ spec:
       chart: loki
       sourceRef:
         kind: HelmRepository
-        name: grafana
+        name: grafana-charts
       version: "6.31.0"
   interval: 10m
   install:
