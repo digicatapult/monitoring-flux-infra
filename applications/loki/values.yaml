@@ -8,6 +8,8 @@ loki:
     - -config.expand-env=true
   limits_config:
     volume_enabled: true
+  pattern_ingester:
+    enabled: true
   # https://grafana.com/docs/loki/latest/configuration/#schema_config
   schemaConfig:
     configs:
