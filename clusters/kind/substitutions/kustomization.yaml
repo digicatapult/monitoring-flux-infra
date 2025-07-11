@@ -5,6 +5,7 @@ namespace: monitoring
 configMapGenerator:
   - name: env-values
     files:
+      - alloy-values.yaml=alloy/values.yaml
       - kube-prometheus-stack-values.yaml=kube-prometheus-stack/values.yaml
       - loki-values.yaml=loki/values.yaml
 configurations:
@@ -12,5 +13,6 @@ configurations:
 generatorOptions:
   disableNameSuffixHash: true
 resources:
+  - alloy
   - kube-prometheus-stack
   - loki
