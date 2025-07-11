@@ -29,7 +29,7 @@ grafana:
       access: proxy
       isDefault: false
       jsonData:
-      maxLines: 1000
+        maxLines: 1000
     - name: "Prometheus AlertManager"
       type: camptocamp-prometheus-alertmanager-datasource
       uid: prometheus-alertmanager
