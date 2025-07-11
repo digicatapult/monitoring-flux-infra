@@ -8,8 +8,9 @@ This is a work-in-progress [FluxCD](https://fluxcd.io/) repository to bring up c
 ```
 .
 ├── applications
-│   ├── loki
-│   └── kube-prometheus-stack
+│   ├── alloy
+│   ├── kube-prometheus-stack
+│   └── loki
 ├── clusters
 │   ├── azure
 │   │   └── production
@@ -26,6 +27,7 @@ This is a work-in-progress [FluxCD](https://fluxcd.io/) repository to bring up c
 │           └── flux-system
 ├── infrastructure
 │   ├── dashboards
+│   ├── logs
 │   └── monitors
 └── scripts
 ```
