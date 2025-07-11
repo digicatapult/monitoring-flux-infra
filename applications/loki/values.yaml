@@ -6,6 +6,8 @@ loki:
     replication_factor: 1
   extraArgs:
     - -config.expand-env=true
+  limits_config:
+    volume_enabled: true
   # https://grafana.com/docs/loki/latest/configuration/#schema_config
   schemaConfig:
     configs:
