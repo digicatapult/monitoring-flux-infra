@@ -25,7 +25,8 @@ grafana:
   additionalDataSources:
     - name: Loki
       type: loki
-      url: http://loki-gateway.loki
+      url: http://loki-gateway.monitoring
+      # url: http://loki-gateway.{{ template "loki.namespace" . }}.svc.cluster.local:{{ .Values.gateway.service.port }}
       access: proxy
       isDefault: false
       jsonData:
