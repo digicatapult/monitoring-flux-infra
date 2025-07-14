@@ -10,7 +10,10 @@ on:
     branches:
       - main
     paths:
+      - 'applications/**'
+      - 'clusters/kind/**'
       - 'examples/kind/**'
+      - 'infrastructure/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
