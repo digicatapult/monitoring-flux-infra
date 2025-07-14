@@ -52,16 +52,6 @@ module.exports = (config = {}) => {
         separateMultipleMajor: true,
       },
       {
-        matchManagers: ["flux"],
-        addLabels: ["azure", "production"],
-        automerge: false,
-        groupName: "flux - azure overlay",
-        matchPaths: ["clusters/azure/.*\\.ya?ml$"],
-        separateMajorMinor: true,
-        separateMinorPatch: false,
-        separateMultipleMajor: true,
-      },
-      {
         matchManagers: ["github-actions"],
         labels: ["dependencies", "github-actions"],
       },
@@ -72,6 +62,11 @@ module.exports = (config = {}) => {
         extends: ["schedule:automergeNonOfficeHours"],
         matchPackageNames: ["actions/checkout", "actions/cache"],
         matchUpdateTypes: ["major", "minor", "patch"],
+      },
+      {
+        matchManagers: ["flux"],
+        enabled: false,
+        matchPaths: ["clusters/azure/.*\\.ya?ml$"],
       },
     ],
     prHourlyLimit: 20,
