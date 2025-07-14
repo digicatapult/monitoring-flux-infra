@@ -1,0 +1,24 @@
+name: release-stack
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release-github:
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Source repository
+        uses: actions/checkout@v4
+      - name: Create release
+        run: |
+          gh release create ${GITHUB_REF#refs/*/} \
+          --generate-notes --notes-from-tag \
+          --verify-tag
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

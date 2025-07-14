@@ -189,3 +189,8 @@ To provide an example of the above, there could be relevant values files in thre
 - `clusters/azure/production/substitutions/kube-prometheus-stack/values.yaml`
 
 By default, the specific values for each of the above cluster types will always override the shared ones.
+
+
+### Using Renovate for CI
+
+In most cases, Renovate will be used to just update the base layer of applications and the Kind overlays, leaving the Azure overlays untouched. Developers will have the choice of whether to pass staging or production versions through environment variables or ConfigMaps, using `.spec.postBuild.Substitute` or similar in the corresponding Azure overlay.
