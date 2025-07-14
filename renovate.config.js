@@ -17,6 +17,10 @@ module.exports = (config = {}) => {
     extends: [":timezone(Europe/London)"],
     flux: {
       labels: ["dependencies", "flux"],
+      managerFilePatterns: [
+        "applications/.*\\.ya?ml$",
+        "clusters/kind/.*\\.ya?ml$",
+      ],
     },
     ignorePaths: [
       "**/clusters/azure/**",
