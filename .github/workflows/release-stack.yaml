@@ -2,14 +2,21 @@ name: release-stack
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
 
 jobs:
   release-github:
     if: startsWith(github.ref, 'refs/tags/v')
-    uses: digicatapult/shared-workflows/.github/workflows/release-github.yml@main
-    permissions:
-      contents: write
-      pull-requests: read
-    secrets: inherit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Source repository
+        uses: actions/checkout@v4
+      - name: Create release
+        run: |
+          gh release create ${GITHUB_REF#refs/*/} \
+          --generate-notes \
+          --verify-tag
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
