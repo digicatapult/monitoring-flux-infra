@@ -17,6 +17,7 @@ module.exports = (config = {}) => {
     extends: [":timezone(Europe/London)"],
     flux: {
       labels: ["dependencies", "flux"],
+      managerFilePatterns: ["**/*.yaml", "**/*.yml"],
     },
     ignorePaths: [
       "**/clusters/azure/**",
@@ -35,7 +36,7 @@ module.exports = (config = {}) => {
         addLabels: ["automerge", "base"],
         automerge: true,
         groupName: "flux - base layer",
-        matchPaths: ["applications/.*\\.ya?ml$"],
+        matchFileNames: ["applications/.*\\.ya?ml$"],
         separateMajorMinor: true,
         separateMinorPatch: false,
         separateMultipleMajor: true,
@@ -45,7 +46,7 @@ module.exports = (config = {}) => {
         addLabels: ["automerge", "kind"],
         automerge: true,
         groupName: "flux - kind overlay",
-        matchPaths: ["clusters/kind/.*\\.ya?ml$"],
+        matchFileNames: ["clusters/kind/.*\\.ya?ml$"],
         separateMajorMinor: true,
         separateMinorPatch: false,
         separateMultipleMajor: true,
@@ -61,6 +62,11 @@ module.exports = (config = {}) => {
         extends: ["schedule:automergeNonOfficeHours"],
         matchPackageNames: ["actions/checkout", "actions/cache"],
         matchUpdateTypes: ["major", "minor", "patch"],
+      },
+      {
+        matchManagers: ["flux"],
+        enabled: false,
+        matchFileNames: ["clusters/azure/.*\\.ya?ml$"],
       },
     ],
     prHourlyLimit: 20,
