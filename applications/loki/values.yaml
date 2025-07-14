@@ -1,0 +1,35 @@
+# https://github.com/grafana/loki/blob/main/production/helm/loki/values.yaml
+deploymentMode: SingleBinary
+loki:
+  auth_enabled: false
+  commonConfig:
+    replication_factor: 1
+  extraArgs:
+    - -config.expand-env=true
+  limits_config:
+    discover_service_name: []
+    volume_enabled: true
+  pattern_ingester:
+    enabled: true
+  # https://grafana.com/docs/loki/latest/configuration/#schema_config
+  schemaConfig:
+    configs:
+      - from: 2024-04-01
+        index:
+          prefix: index_
+          period: 24h
+        object_store: filesystem
+        schema: v13
+        store: tsdb
+  storage:
+    type: "filesystem"
+chunksCache:
+  allocatedMemory: 2048
+backend:
+  replicas: 0
+read:
+  replicas: 0
+singleBinary:
+  replicas: 1
+write:
+  replicas: 0

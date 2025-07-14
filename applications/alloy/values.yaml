@@ -1,0 +1,16 @@
+# https://github.com/grafana/alloy/blob/main/operations/helm/charts/alloy/values.yaml
+alloy:
+  configMap:
+    create: false
+    name: logs
+    key: base.alloy
+  envFrom:
+  - configMapRef:
+      name: logs
+controller:
+  type: 'daemonset'
+  replicas: 1
+serviceMonitor:
+  enabled: true
+  additionalLabels:
+    release: kube-prometheus-stack

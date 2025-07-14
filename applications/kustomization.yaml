@@ -4,7 +4,9 @@ namespace: monitoring
 configMapGenerator:
   - name: base-values
     files:
+      - alloy-values.yaml=alloy/values.yaml
       - kube-prometheus-stack-values.yaml=kube-prometheus-stack/values.yaml
+      - loki-values.yaml=loki/values.yaml
   - name: base-config
     files:
       - kube-state-metrics-config.yaml=kube-prometheus-stack/metrics.yaml
@@ -17,5 +19,7 @@ configurations:
 generatorOptions:
   disableNameSuffixHash: true
 resources:
+  - alloy
   - kube-prometheus-stack
+  - loki
   - sources.yaml
