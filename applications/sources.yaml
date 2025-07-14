@@ -3,6 +3,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: digicatapult
+  namespace: monitoring
 spec:
   interval: 10m
   url: https://digicatapult.github.io/helm-charts
@@ -11,6 +12,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: grafana-charts
+  namespace: monitoring
 spec:
   interval: 10m
   url: https://grafana.github.io/helm-charts
@@ -19,6 +21,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: prometheus-community
+  namespace: monitoring
 spec:
   interval: 10m
   type: oci
