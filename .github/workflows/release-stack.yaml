@@ -4,7 +4,9 @@ on:
   push:
     tags:
       - 'v*.*.*'
-  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   release-github:
@@ -16,7 +18,7 @@ jobs:
       - name: Create release
         run: |
           gh release create ${GITHUB_REF#refs/*/} \
-          --generate-notes \
+          --generate-notes --notes-from-tag \
           --verify-tag
         env:
           GITHUB_TOKEN: ${{ github.token }}
