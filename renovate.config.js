@@ -26,11 +26,9 @@ module.exports = (config = {}) => {
     onboarding: false,
     packageRules: [
       {
-        schedule: ["* 9-13,14-17 * * 1-5"],
-      },
-      {
         matchManagers: ["flux"],
         pinDigests: false,
+        schedule: ["* 9-13,14-17 * * 1-5"],
       },
       {
         matchManagers: ["flux"],
@@ -40,7 +38,6 @@ module.exports = (config = {}) => {
         matchPaths: ["applications/.*\\.ya?ml$"],
         separateMajorMinor: true,
         separateMinorPatch: false,
-        separateMultiple: true,
         separateMultipleMajor: true,
       },
       {
@@ -51,7 +48,6 @@ module.exports = (config = {}) => {
         matchPaths: ["clusters/kind/.*\\.ya?ml$"],
         separateMajorMinor: true,
         separateMinorPatch: false,
-        separateMultiple: true,
         separateMultipleMajor: true,
       },
       {
