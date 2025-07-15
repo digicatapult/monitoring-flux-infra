@@ -13,7 +13,7 @@ module.exports = (config = {}) => {
 
   return {
     $schema: "https://docs.renovatebot.com/renovate-schema.json",
-    baseBranches: ["main"],
+    baseBranches: ["test/automerge"],
     extends: [":timezone(Europe/London)"],
     flux: {
       labels: ["dependencies", "flux"],
@@ -36,7 +36,11 @@ module.exports = (config = {}) => {
         addLabels: ["automerge", "base"],
         automerge: true,
         groupName: "flux - base layer",
-        matchFileNames: ["applications/.*\\.ya?ml$"],
+        matchFileNames: [
+          "applications/**/*.yaml",
+          "applications/**/*.yml"
+        ],
+        matchUpdateTypes: ["minor", "patch", "pin", "digest"],
         separateMajorMinor: true,
         separateMinorPatch: false,
         separateMultipleMajor: true,
@@ -46,7 +50,11 @@ module.exports = (config = {}) => {
         addLabels: ["automerge", "kind"],
         automerge: true,
         groupName: "flux - kind overlay",
-        matchFileNames: ["clusters/kind/.*\\.ya?ml$"],
+        matchFileNames: [
+          "clusters/kind/**/*.yaml",
+          "clusters/kind/**/*.yml"
+        ],
+        matchUpdateTypes: ["minor", "patch", "pin", "digest"],
         separateMajorMinor: true,
         separateMinorPatch: false,
         separateMultipleMajor: true,
@@ -66,7 +74,10 @@ module.exports = (config = {}) => {
       {
         matchManagers: ["flux"],
         enabled: false,
-        matchFileNames: ["clusters/azure/.*\\.ya?ml$"],
+        matchFileNames: [
+          "clusters/azure/**/*.yaml",
+          "clusters/azure/**/*.yml"
+        ],
       },
     ],
     prHourlyLimit: 20,
