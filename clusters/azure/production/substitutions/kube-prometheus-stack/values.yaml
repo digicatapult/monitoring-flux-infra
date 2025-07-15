@@ -1,1 +1,141 @@
 # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
+alertmanager:
+  alertmanagerSpec:
+    podAntiAffinity: soft
+    replicas: 2
+  config:
+    receivers:
+      - name: "null"
+prometheus:
+  prometheusSpec:
+    podAntiAffinity: soft
+    replicas: 2
+    resources:
+      limits:
+        cpu: 2000m
+        memory: 2Gi
+      requests:
+        cpu: 200m
+        memory: 200Mi
+    retention: 30d
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 50Gi
+          storageClassName: managed-csi-premium
+  service:
+    sessionAffinity: ClientIP
+grafana:
+  additionalDataSources:
+    - name: "Prometheus AlertManager"
+      type: camptocamp-prometheus-alertmanager-datasource
+      uid: prometheus-alertmanager
+      url: http://{{ template "kube-prometheus-stack.fullname" . }}-alertmanager.{{ template "kube-prometheus-stack.namespace" . }}:{{ .Values.alertmanager.service.port }}/{{ trimPrefix "/" .Values.alertmanager.alertmanagerSpec.routePrefix }}
+  defaultDashboardsEnabled: false
+  ingress:
+    enabled: true
+    ingressClassName: nginx-monitoring
+    hosts:
+      - "${MONITORING_STACK_HOSTNAME}"
+  grafana.ini:
+    server:
+      root_url: "${MONITORING_STACK_URL}"
+  persistence:
+    accessModes:
+      - ReadWriteOnce
+    enabled: true
+    finalizers:
+      - kubernetes.io/pvc-protection
+    size: 10Gi
+    storageClassName: managed-csi-premium
+    type: pvc
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+      - name: 'default'
+        orgId: 1
+        folder: ''
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards
+      - name: 'grafana-dashboards-kubernetes'
+        orgId: 1
+        folder: 'kubernetes'
+        type: file
+        disableDeletion: true
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/kubernetes
+  dashboards:
+    default:
+      alertmanager:
+        gnetId: 9578
+        revision: 4
+        datasource: Prometheus
+      flux2:
+        gnetId: 16714
+        revision: 1
+        datasource: Prometheus
+      keycloak:
+        gnetId: 19659
+        revision: 1
+        datasource: Prometheus
+      nginx:
+        gnetId: 9614
+        revision: 1
+        datasource: Prometheus
+      node-exporter-full:
+        gnetId: 1860
+        revision: 37
+        datasource: Prometheus
+      postgresql:
+        gnetId: 9628
+        revision: 7
+        datasource: Prometheus
+      velero:
+        gnetId: 16829
+        revision: 5
+        datasource: Prometheus
+    grafana-dashboards-kubernetes:
+      k8s-addons-prometheus:
+        gnetId: 19105
+        revision: 3
+        datasource: Prometheus
+      k8s-system-api-server:
+        gnetId: 15761
+        revision: 16
+        datasource: Prometheus
+      k8s-system-coredns:
+        gnetId: 15762
+        revision: 18
+        datasource: Prometheus
+      k8s-views-global:
+        gnetId: 15757
+        revision: 37
+        datasource: Prometheus
+      k8s-views-namespaces:
+        gnetId: 15758
+        revision: 34
+        datasource: Prometheus
+      k8s-views-nodes:
+        gnetId: 15759
+        revision: 29
+        datasource: Prometheus
+      k8s-views-pods:
+        gnetId: 15760
+        revision: 28
+        datasource: Prometheus
+prometheus-node-exporter:
+  prometheus:
+    monitor:
+      relabelings:
+      - action: replace
+        sourceLabels: [__meta_kubernetes_pod_node_name]
+        targetLabel: nodename
