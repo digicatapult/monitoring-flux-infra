@@ -22,7 +22,11 @@ spec:
     - kind: ConfigMap
       name: base-values
       valuesKey: alloy-base-values.yaml
-    # Environment-specific values
+    # Environment-type values
     - kind: ConfigMap
       name: env-values
       valuesKey: alloy-env-values.yaml
+    # Project values
+    - kind: ConfigMap
+      name: project-values
+      valuesKey: alloy-project-values.yaml
