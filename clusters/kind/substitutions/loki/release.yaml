@@ -22,7 +22,11 @@ spec:
     - kind: ConfigMap
       name: base-values
       valuesKey: loki-base-values.yaml
-    # Environment-specific values
+    # Environment-type values
     - kind: ConfigMap
       name: env-values
       valuesKey: loki-env-values.yaml
+    # Project values
+    - kind: ConfigMap
+      name: project-values
+      valuesKey: loki-project-values.yaml
