@@ -4,12 +4,12 @@ namespace: monitoring
 configMapGenerator:
   - name: base-values
     files:
-      - alloy-values.yaml=alloy/values.yaml
-      - kube-prometheus-stack-values.yaml=kube-prometheus-stack/values.yaml
-      - loki-values.yaml=loki/values.yaml
+      - alloy-base-values.yaml=alloy/values.yaml
+      - kube-prometheus-stack-base-values.yaml=kube-prometheus-stack/values.yaml
+      - loki-base-values.yaml=loki/values.yaml
   - name: base-config
     files:
-      - kube-state-metrics-config.yaml=kube-prometheus-stack/metrics.yaml
+      - kube-state-metrics-base-config.yaml=kube-prometheus-stack/metrics.yaml
     options:
       labels:
         app.kubernetes.io/part-of: flux

@@ -21,8 +21,8 @@ spec:
     # Shared/base values for monitoring applications
     - kind: ConfigMap
       name: base-values
-      valuesKey: loki-values.yaml
+      valuesKey: loki-base-values.yaml
     # Environment-specific values
     - kind: ConfigMap
       name: env-values
-      valuesKey: loki-values.yaml
+      valuesKey: loki-env-values.yaml

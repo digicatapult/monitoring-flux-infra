@@ -177,10 +177,10 @@ Some attention needs to be given to the precedence of values; the last values fi
   valuesFrom:
     - kind: ConfigMap
       name: base-values
-      valuesKey: kube-prometheus-stack-values.yaml
+      valuesKey: kube-prometheus-stack-base-values.yaml
     - kind: ConfigMap
       name: env-values
-      valuesKey: kube-prometheus-stack-values.yaml
+      valuesKey: kube-prometheus-stack-env-values.yaml
 ```
 
 To provide an example of the above, there could be relevant values files in three separate locations:
