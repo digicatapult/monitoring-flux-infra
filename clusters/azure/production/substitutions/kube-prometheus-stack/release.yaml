@@ -17,17 +17,21 @@ spec:
     # Shared/base values for monitoring applications
     - kind: ConfigMap
       name: base-values
-      valuesKey: kube-prometheus-stack-values.yaml
-    # Environment-specific values
-    - kind: ConfigMap
-      name: env-values
-      valuesKey: kube-prometheus-stack-values.yaml
+      valuesKey: kube-prometheus-stack-base-values.yaml
     # Additional configuration for dashboards, metrics, or infrastructure
     - kind: ConfigMap
       name: base-config
-      valuesKey: kube-state-metrics-config.yaml
+      valuesKey: kube-state-metrics-base-config.yaml
+    # Environment-type values
+    - kind: ConfigMap
+      name: env-values
+      valuesKey: kube-prometheus-stack-env-values.yaml
     # Encrypted secrets for the project
     - kind: Secret
       name: monitoring-secrets
       valuesKey: grafana_password
       targetPath: grafana.adminPassword
+    # Project values
+    - kind: ConfigMap
+      name: project-values
+      valuesKey: kube-prometheus-stack-project-values.yaml

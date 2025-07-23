@@ -3,11 +3,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: monitoring
 configMapGenerator:
-  - name: env-values
+  - name: project-values
     files:
-      - alloy-env-values.yaml=alloy/values.yaml
-      - kube-prometheus-stack-env-values.yaml=kube-prometheus-stack/values.yaml
-      - loki-env-values.yaml=loki/values.yaml
+      - alloy-project-values.yaml=alloy/values.yaml
+      - kube-prometheus-stack-project-values.yaml=kube-prometheus-stack/values.yaml
+      - loki-project-values.yaml=loki/values.yaml
 configurations:
   - kustomize.yaml
 generatorOptions:

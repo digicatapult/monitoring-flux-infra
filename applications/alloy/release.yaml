@@ -21,4 +21,12 @@ spec:
     # Shared/base values for monitoring applications
     - kind: ConfigMap
       name: base-values
-      valuesKey: alloy-values.yaml
+      valuesKey: alloy-base-values.yaml
+    # Environment-type values
+    - kind: ConfigMap
+      name: env-values
+      valuesKey: alloy-env-values.yaml
+    # Project values
+    - kind: ConfigMap
+      name: project-values
+      valuesKey: alloy-project-values.yaml

@@ -5,6 +5,9 @@ metadata:
   name: env-sync
   namespace: monitoring
 spec:
+  dependsOn:
+    - name: project-sync
+      namespace: monitoring
   interval: 10m0s
   path: ./clusters/kind
   prune: true

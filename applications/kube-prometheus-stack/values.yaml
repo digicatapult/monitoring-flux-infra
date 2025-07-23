@@ -34,7 +34,6 @@ grafana:
       type: camptocamp-prometheus-alertmanager-datasource
       uid: prometheus-alertmanager
       url: http://{{ template "kube-prometheus-stack.fullname" . }}-alertmanager.{{ template "kube-prometheus-stack.namespace" . }}:{{ .Values.alertmanager.service.port }}/{{ trimPrefix "/" .Values.alertmanager.alertmanagerSpec.routePrefix }}
-  adminPassword: grafana
   dashboards:
     default:
       alertmanager:
