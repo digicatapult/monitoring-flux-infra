@@ -39,11 +39,6 @@ grafana:
   ingress:
     enabled: true
     ingressClassName: nginx-monitoring
-    hosts:
-      - "${MONITORING_STACK_HOSTNAME}"
-  grafana.ini:
-    server:
-      root_url: "${MONITORING_STACK_URL}"
   persistence:
     accessModes:
       - ReadWriteOnce
