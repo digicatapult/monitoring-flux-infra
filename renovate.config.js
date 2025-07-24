@@ -20,8 +20,7 @@ module.exports = (config = {}) => {
       managerFilePatterns: ["**/*.yaml", "**/*.yml"],
     },
     ignorePaths: [
-      "**/clusters/azure/**",
-      "**/examples/**",
+      "**/examples/azure/**",
       "**/scripts/**"
     ],
     onboarding: false,
@@ -49,10 +48,10 @@ module.exports = (config = {}) => {
         matchManagers: ["flux"],
         addLabels: ["automerge", "kind"],
         automerge: true,
-        groupName: "flux - kind overlay",
+        groupName: "flux - kind example",
         matchFileNames: [
-          "clusters/kind/**/*.yaml",
-          "clusters/kind/**/*.yml"
+          "examples/kind/**/*.yaml",
+          "examples/kind/**/*.yml"
         ],
         matchUpdateTypes: ["minor", "patch", "pin", "digest"],
         separateMajorMinor: true,
