@@ -7,6 +7,11 @@ metadata:
 spec:
   interval: 10m0s
   path: ./examples/kind/monitoring
+  postBuild:
+    substitute:
+      ALLOY_VERSION: "1.2.0"
+      KUBE_PROMETHEUS_STACK_VERSION: "71.2.0"
+      LOKI_VERSION: "6.33.0"
   prune: true
   sourceRef:
     kind: GitRepository
