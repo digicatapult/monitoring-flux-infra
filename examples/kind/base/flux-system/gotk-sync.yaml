@@ -7,7 +7,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: bug/remove_extra_helmreleases
+    branch: main
   url: https://github.com/digicatapult/monitoring-flux-infra.git
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
