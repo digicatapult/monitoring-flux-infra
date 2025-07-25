@@ -20,7 +20,10 @@ module.exports = (config = {}) => {
       managerFilePatterns: ["**/*.yaml", "**/*.yml"],
     },
     ignorePaths: [
+      "**/applications/**",
+      "**/clusters/**",
       "**/examples/azure/**",
+      "**/infrastructure/**",
       "**/scripts/**"
     ],
     onboarding: false,
@@ -29,20 +32,6 @@ module.exports = (config = {}) => {
         matchManagers: ["flux"],
         pinDigests: false,
         schedule: ["* 9-13,14-17 * * 1-5"],
-      },
-      {
-        matchManagers: ["flux"],
-        addLabels: ["automerge", "base"],
-        automerge: true,
-        groupName: "flux - base layer",
-        matchFileNames: [
-          "applications/**/*.yaml",
-          "applications/**/*.yml"
-        ],
-        matchUpdateTypes: ["minor", "patch", "pin", "digest"],
-        separateMajorMinor: true,
-        separateMinorPatch: false,
-        separateMultipleMajor: true,
       },
       {
         matchManagers: ["flux"],
