@@ -28,6 +28,12 @@ module.exports = (config = {}) => {
     ],
     onboarding: false,
     packageRules: [
+    packageRules: [
+      {
+        matchManagers: ["github-actions"],
+        matchPackageNames: ["helm/kind-action"],
+        allowedVersions: "<= 1.13.0"
+      },
       {
         matchManagers: ["flux"],
         pinDigests: false,
