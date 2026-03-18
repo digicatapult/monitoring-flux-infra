@@ -28,7 +28,6 @@ module.exports = (config = {}) => {
     ],
     onboarding: false,
     packageRules: [
-    packageRules: [
       {
         matchManagers: ["github-actions"],
         matchPackageNames: ["helm/kind-action"],
